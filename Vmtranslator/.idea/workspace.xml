@@ -5,14 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a5da12e-c4ca-41d9-a436-cfa93648479a" name="Changes" comment="add vm">
-      <change afterPath="$PROJECT_DIR$/src/VMTranslator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OutputImages-CPUEmulator/Screenshot from 2022-06-14 13-51-35.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/files/SimpleAdd.vm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/files/StackTest.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Assembler/src/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/Converters/Operators.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vmtranslator/Converters/Operators.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/Converters/Pop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vmtranslator/Converters/Pop.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/Converters/Push.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vmtranslator/Converters/Push.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/Handlers/ConvertToVM.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vmtranslator/Handlers/ConvertToVM.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/Handlers/Remove_Whitespace.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vmtranslator/Handlers/Remove_Whitespace.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/Parser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/Writer.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Converters/Operators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Converters/Operators.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Converters/Pop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Converters/Pop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Converters/Push.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Converters/Push.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Handlers/ConvertToVM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handlers/ConvertToVM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Handlers/Remove_Whitespace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handlers/Remove_Whitespace.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handlers/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Writer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handlers/Writer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Handlers/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handlers/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OutputImages-CPUEmulator/Screenshot from 2022-06-04 09-47-22.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VMTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VMTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/StaticTest.asm" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +40,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -58,10 +71,12 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/files" />
+      <recent name="$PROJECT_DIR$/src/OutputImages-CPUEmulator" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/Writers" />
     </key>
@@ -69,7 +84,7 @@
       <recent name="$PROJECT_DIR$/src/files" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Parser">
+  <component name="RunManager" selected="Application.VMTranslator">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Vmtranslator" />
@@ -113,8 +128,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Parser" />
         <item itemvalue="Application.VMTranslator" />
+        <item itemvalue="Application.Parser" />
         <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Shyamdev_21060_Assembler" />
@@ -144,6 +159,13 @@
       <workItem from="1654228217017" duration="13831000" />
       <workItem from="1654250411308" duration="5107000" />
       <workItem from="1654314071553" duration="2798000" />
+      <workItem from="1654491740743" duration="257000" />
+      <workItem from="1654508926453" duration="7000" />
+      <workItem from="1654765347472" duration="2720000" />
+      <workItem from="1655100405800" duration="541000" />
+      <workItem from="1655193376438" duration="2110000" />
+      <workItem from="1655195603255" duration="1378000" />
+      <workItem from="1655263255982" duration="578000" />
     </task>
     <task id="LOCAL-00001" summary="add vm">
       <created>1654254229842</created>

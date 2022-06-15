@@ -40,7 +40,12 @@ public class Pop {
         int length = filename.split("/").length;
         filename = filename.split("/")[length-1];
         filename = filename.substring(0,filename.indexOf("."));
-        return "@"+filename+"."+index+"\nD=M\n"+base_pop;
+        return "@"+filename+"."+index+"\nD=M\n"+ """
+        @SP
+        M=M-1
+        A=M
+        D=M        
+        """;
     }
 
     public String pop_temp(String index){

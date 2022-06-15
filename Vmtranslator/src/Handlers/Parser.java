@@ -1,4 +1,8 @@
 package Handlers;
+import Converters.Operators;
+import Converters.Pop;
+import Converters.Push;
+
 import java.io.*;
 
 // Parse through the files and convert it to operation, segment, index
@@ -9,6 +13,9 @@ public class Parser {
         BufferedReader bis = null;
         FileReader fis= null;
         String line;
+        Push push = new Push();
+        Pop pop = new Pop();
+        Operators operator = new Operators();
         try {
             fis = new FileReader(file);
             bis = new BufferedReader(fis);
@@ -25,7 +32,7 @@ public class Parser {
                     }
                     Writer.CodeWriter(filename,"//"+line+"\n");
                     System.out.println(line);
-                    line = ConvertToVM.ConvertToVM(operation,segment,index, filename);
+                    line = ConvertToVM.ConvertToVM(operation, segment, index, filename, pop, push, operator);
                     System.out.println(line);
                     Writer.CodeWriter(filename, line);
                 }

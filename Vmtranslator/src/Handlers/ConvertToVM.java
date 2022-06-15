@@ -7,11 +7,17 @@ import Converters.Push;
 // Converts the line to Assembly Language
 
 public class ConvertToVM {
-    public static String ConvertToVM(String operation, String segment, String index, String filename){
+    public static String ConvertToVM(
+            String operation,
+            String segment,
+            String index,
+            String filename,
+            Pop pop,
+            Push push,
+            Operators operator
+    ){
         String codesnip = "";
-        Push push = new Push();
-        Pop pop = new Pop();
-        Operators operator = new Operators();
+
         if(operation != null){
             if(segment != null && index != null){
                 if (segment.equals("local")){
@@ -72,6 +78,14 @@ public class ConvertToVM {
                     codesnip = operator.or;
                 } else if (operation.equals("neg")){
                     codesnip = operator.neg;
+                } else if (operation.equals("not")){
+                    codesnip = operator.not;
+                } else if (operation.equals("eq")){
+                    codesnip = operator.eq();
+                } else if (operation.equals("gt")){
+                    codesnip = operator.gt();
+                } else if (operation.equals("ls")){
+                    codesnip = operator.lt();
                 }
             }
         }

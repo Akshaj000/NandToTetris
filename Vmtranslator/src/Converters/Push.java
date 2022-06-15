@@ -49,7 +49,7 @@ public class Push{
         int length = filename.split("/").length;
         filename = filename.split("/")[length-1];
         filename = filename.substring(0,filename.indexOf("."));
-        return filename+"."+ index+"\nD=A\n"+base;
+        return "@"+filename+"."+ index+"\nD=A\n"+base;
     }
 
     public String push_pointer(String constant){
