@@ -5,27 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a5da12e-c4ca-41d9-a436-cfa93648479a" name="Changes" comment="add vm">
-      <change afterPath="$PROJECT_DIR$/src/OutputImages-CPUEmulator/Screenshot from 2022-06-14 13-51-35.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/files/SimpleAdd.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/files/StackTest.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Assembler/src/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OutputImages-CPUEmulator/Screenshot from 2022-06-17 00-10-08.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/Converters/Operators.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vmtranslator/Converters/Operators.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/Converters/Pop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vmtranslator/Converters/Pop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/Converters/Push.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vmtranslator/Converters/Push.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/Handlers/ConvertToVM.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vmtranslator/Handlers/ConvertToVM.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/Handlers/Remove_Whitespace.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vmtranslator/Handlers/Remove_Whitespace.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/Parser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/Writer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/VMTranslator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vmtranslator/VMTranslator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/files/StackTest.asm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vmtranslator/files/StackTest.asm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Converters/Operators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Converters/Operators.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Converters/Pop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Converters/Pop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Converters/Push.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Converters/Push.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Handlers/ConvertToVM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handlers/ConvertToVM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Handlers/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handlers/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OutputImages-CPUEmulator/Screenshot from 2022-06-04 09-47-22.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VMTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VMTranslator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/StaticTest.asm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/StackTest.asm" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/StackTest.asm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +52,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/files" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/OutputImages-CPUEmulator" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -75,8 +64,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/files" />
       <recent name="$PROJECT_DIR$/src/OutputImages-CPUEmulator" />
+      <recent name="$PROJECT_DIR$/src/files" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/Writers" />
     </key>
@@ -166,6 +155,7 @@
       <workItem from="1655193376438" duration="2110000" />
       <workItem from="1655195603255" duration="1378000" />
       <workItem from="1655263255982" duration="578000" />
+      <workItem from="1655402738610" duration="2133000" />
     </task>
     <task id="LOCAL-00001" summary="add vm">
       <created>1654254229842</created>

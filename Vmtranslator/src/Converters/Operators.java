@@ -3,6 +3,7 @@ package Converters;
 // Class containing operators
 
 public class Operators {
+    private int count = 0;
 
     private String base_str = """
             @SP
@@ -10,17 +11,17 @@ public class Operators {
             D=M
             """;
 
-    private String base_loop_front_str = """
-            A=A-1
-            D=M-D
-            M=-1
-            """;
-
-    private String base_loop_rear_str = """
-            @SP
-            A=M-1
-            M=0
-            """;
+    private String loop__str(String label) {
+        return """
+                @SP
+                A=M
+                M=0
+                """ + "@" + "End." + count + "\n0;JMP"+"\n("+genrate_labelcount(label)+")\n"+ """
+                @SP
+                A=M
+                M=-1
+                """+"("+"End."+count+")\n"+inc_str;
+    }
 
     private String dec_str = """
             @SP
@@ -32,9 +33,8 @@ public class Operators {
             M=M+1         
             """;
 
-    private int count = 0;
     private String genrate_labelcount(String label){
-        return label+"_"+count;
+        return label+"."+count;
     }
 
     public String add = base_str+dec_str+"M=M+D\n"+inc_str;
@@ -45,31 +45,28 @@ public class Operators {
 
     public String or = base_str+dec_str+"M=D|M\n"+inc_str;
 
-    public String neg = base_str+dec_str+"M=-M\n"+inc_str;
+    public String neg = dec_str+"M=-M\n"+inc_str;
 
-    public String not = base_str+dec_str+"M=!M\n"+inc_str;
+    public String not = dec_str+"M=!M\n"+inc_str;
 
     public String eq(){
         this.count++;
         return (
-                base_str + base_loop_front_str + "@" + genrate_labelcount("EQ") +
-                "\nD;JEQ\n" + base_loop_rear_str + "(" + genrate_labelcount("EQ") + ")\n"
+                base_str+dec_str+"D=M-D\n@"+genrate_labelcount("EQ")+"\nD;JEQ\n"+loop__str("EQ")
         );
     }
 
     public String gt(){
         this.count++;
         return (
-                base_str + base_loop_front_str + "@" + genrate_labelcount("GT") +
-                "\nD;JGT\n" + base_loop_rear_str + "(" + genrate_labelcount("GT") + ")\n"
+                base_str+dec_str+"D=M-D\n@"+genrate_labelcount("GT")+"\nD;JGT\n"+loop__str("GT")
         );
     }
 
     public String lt(){
         this.count++;
         return (
-                base_str + base_loop_front_str + "@" + genrate_labelcount("LT") +
-                "\nD;JLT\n" + base_loop_rear_str + "(" + genrate_labelcount("LT") + ")\n"
+                base_str+dec_str+"D=M-D\n@"+genrate_labelcount("LT")+"\nD;JLT\n"+loop__str("LT")
         );
     }
 }

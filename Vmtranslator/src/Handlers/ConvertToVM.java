@@ -84,7 +84,7 @@ public class ConvertToVM {
                     codesnip = operator.eq();
                 } else if (operation.equals("gt")){
                     codesnip = operator.gt();
-                } else if (operation.equals("ls")){
+                } else if (operation.equals("lt")){
                     codesnip = operator.lt();
                 }
             }
