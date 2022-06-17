@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a5da12e-c4ca-41d9-a436-cfa93648479a" name="Changes" comment="add vm">
-      <change afterPath="$PROJECT_DIR$/src/OutputImages-CPUEmulator/Screenshot from 2022-06-17 00-10-08.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/Converters/Operators.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vmtranslator/Converters/Operators.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/Handlers/ConvertToVM.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vmtranslator/Handlers/ConvertToVM.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/VMTranslator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vmtranslator/VMTranslator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Vmtranslator/files/StackTest.asm" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Vmtranslator/files/StackTest.asm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Converters/Operators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Converters/Operators.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Handlers/ConvertToVM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handlers/ConvertToVM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VMTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VMTranslator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/StackTest.asm" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/StackTest.asm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,6 +148,7 @@
       <workItem from="1655195603255" duration="1378000" />
       <workItem from="1655263255982" duration="578000" />
       <workItem from="1655402738610" duration="2133000" />
+      <workItem from="1655437097056" duration="1213000" />
     </task>
     <task id="LOCAL-00001" summary="add vm">
       <created>1654254229842</created>
