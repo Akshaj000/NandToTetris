@@ -47,7 +47,7 @@ public class Akshaj_21009_Utils {
     }
 
     public static String Cleanup(String line){
-        if (line.equals("")  || line.startsWith("//")) {
+        if (line.equals("")  || line.startsWith("//") || line.startsWith("/**")) {
             return null;
         } else  if (line.contains("//")){
             line = line.split("//")[0].trim();

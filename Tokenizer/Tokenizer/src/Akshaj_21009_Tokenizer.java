@@ -52,14 +52,17 @@ public class Akshaj_21009_Tokenizer {
     }
 
     private Boolean checkStringConstant(String inp){
-        if((inp.startsWith("'")||inp.startsWith("\""))&&(inp.endsWith("'")||inp.endsWith("\""))){
+        if(((inp.startsWith("'")&&(inp.endsWith("'"))||(inp.startsWith("\""))&&inp.endsWith("\"")))){
             return true;
         }
         return false;
     }
 
     private Boolean checkIdentifier(String inp){
-        if(inp.contains(" ")||inp.contains("'")||inp.contains("\"") ){
+        if(Character.isDigit(inp.charAt(0))){
+            return false;
+        }
+        if(inp.contains("'")||inp.contains("\"") ){
             return false;
         }
         return true;
@@ -78,9 +81,6 @@ public class Akshaj_21009_Tokenizer {
 
     public String Tokenize(String input){
         String regex = "";
-        for (int i=0; i< keywords.length;i++){
-            regex+=keywords[i];
-        }
         for (int i=0; i< symbol.length;i++){
             regex+=symbol[i];
         }
