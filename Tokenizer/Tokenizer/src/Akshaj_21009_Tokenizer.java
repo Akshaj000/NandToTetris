@@ -1,13 +1,13 @@
 import java.util.HashMap;
 
 public class Akshaj_21009_Tokenizer {
-    private String[] keywords = new String[]{
+    public String[] keywords = new String[]{
             "class", "constructor", "function", "method", "field", "static", "var",
             "int", "char", "boolean", "void", "true", "false", "null", "this", "let",
             "do", "if", "else", "while", "return"
     };
 
-    private String symbol[] = {
+    public String symbol[] = {
             "{", "}", "(", ")", "[", "]", ".", ",", ";", "+", "-", "*", "/", "&", "|",
             "<", ">", "=", "~"
     };
@@ -72,33 +72,34 @@ public class Akshaj_21009_Tokenizer {
         final HashMap<TYPE,String> Map = new HashMap<>(java.util.Map.of(
                 TYPE.KEYWORD , "keyword",
                 TYPE.SYMBOL, "symbol",
-                TYPE.INTEGER_CONSTANT,"intConst",
-                TYPE.STRING_CONSTANT,"stringConst",
+                TYPE.INTEGER_CONSTANT,"integerConstant",
+                TYPE.STRING_CONSTANT,"stringConstant",
                 TYPE.IDENTIFIER,"identifier"
         ));
-        return  "<"+Map.get(type)+">"+input+"<"+Map.get(type)+">";
+        return  "<"+Map.get(type)+"> "+input+" </"+Map.get(type)+">\n";
     }
 
     public String Tokenize(String input){
-        String regex = "";
-        for (int i=0; i< symbol.length;i++){
-            regex+=symbol[i];
-        }
-        String[] inp = input.split(regex);
-        for (int i=0; i < inp.length; i++) {
-            inp[i] = inp[i].trim();
-            if(inp[i] != ""){
-                if (checkArr(inp[i], TYPE.KEYWORD)) {
-                    return genrateToken(inp[i], TYPE.KEYWORD);
-                } else if (checkArr(inp[i], TYPE.SYMBOL)) {
-                    return genrateToken(inp[i], TYPE.SYMBOL);
-                } else if (checkIntegerConstant(input)) {
-                    return genrateToken(inp[i], TYPE.INTEGER_CONSTANT);
-                } else if (checkStringConstant(input)) {
-                    return genrateToken(inp[i], TYPE.STRING_CONSTANT);
-                } else if (checkIdentifier(input)){
-                    return genrateToken(inp[i], TYPE.IDENTIFIER);
+        input = input.trim();
+        if(input != ""){
+            if (checkArr(input, TYPE.KEYWORD)) {
+                return genrateToken(input, TYPE.KEYWORD);
+            } else if (checkArr(input, TYPE.SYMBOL)) {
+                if(input.equals("<")){
+                    input = "&lt;";
+                } else if (input.equals(">")) {
+                    input="&gt;";
+                } else if (input.equals("&")) {
+                    input="&amp;";
                 }
+                return genrateToken(input, TYPE.SYMBOL);
+            } else if (checkIntegerConstant(input)) {
+                return genrateToken(input, TYPE.INTEGER_CONSTANT);
+            } else if (checkStringConstant(input)) {
+                input = input.split("(\")|(\')")[1];
+                return genrateToken(input, TYPE.STRING_CONSTANT);
+            } else if (checkIdentifier(input)){
+                return genrateToken(input, TYPE.IDENTIFIER);
             }
         }
         return null;
