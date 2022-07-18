@@ -16,7 +16,17 @@ enum TYPE {
     STATEMENT,
     LETSTATEMENT,
     WHILESTATEMENT,
+
+    DOSTATEMENT,
     IFSTATEMENT,
+    SUBROUTINEBODY,
+    SUBROUTINEDEC,
+
+    VARDEC,
+    PARAMETERLIST,
+    CLASS,
+    CLASSBODY,
+    CLASSVARDEC,
 
 }
 class Token {
@@ -103,7 +113,15 @@ public class Akshaj_21009_Tokenizer {
         Map.put(TYPE.STATEMENT,"statement");
         Map.put(TYPE.LETSTATEMENT,"letStatement");
         Map.put(TYPE.WHILESTATEMENT,"whileStatement");
+        Map.put(TYPE.DOSTATEMENT,"doStatement");
         Map.put(TYPE.IFSTATEMENT,"ifStatement");
+        Map.put(TYPE.SUBROUTINEBODY,"subroutineBody");
+        Map.put(TYPE.SUBROUTINEDEC,"subroutineDec");
+        Map.put(TYPE.VARDEC,"varDec");
+        Map.put(TYPE.PARAMETERLIST,"parameterList");
+        Map.put(TYPE.CLASS,"class");
+        Map.put(TYPE.CLASSBODY,"classBody");
+        Map.put(TYPE.CLASSVARDEC,"classVarDec");
         Token token = new Token();
         token.type = Map.get(type).trim();
         token.value = input.trim();
