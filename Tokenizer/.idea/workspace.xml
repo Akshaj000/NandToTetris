@@ -2,45 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf1b6507-c94c-4885-8b2e-d18f07609bb0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../DSA/labsheet4a/src/BinaryTree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../DSA/labsheet_3A/src/ArrayDeque.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../DSA/labsheet_3A/src/SortedPriorityQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../DSA/labsheet_3A/src/UnSortedPriorityQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../DSA/labsheet_4B/src/BinarySearchTree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../NandToTetris/Assembler/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../NandToTetris/Assembler/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../NandToTetris/Assembler/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../NandToTetris/Assembler/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../NandToTetris/Assembler/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../NandToTetris/Assembler/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../NandToTetris/Assembler/src/converters/ConvertAInstruction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../NandToTetris/Assembler/src/converters/ConvertCInstruction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../NandToTetris/Assembler/src/handlers/IdentifyLabelsAndVariables.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../NandToTetris/Assembler/src/handlers/NoWhiteSpace.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../NandToTetris/Assembler/src/handlers/TableGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Vmtranslator/src/Akshaj_21009_VMTranslator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Vmtranslator/src/OutputImages-CPUEmulator/Screenshot from 2022-06-14 13-51-35.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Vmtranslator/src/OutputImages-CPUEmulator/Screenshot from 2022-06-17 00-10-08.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Vmtranslator/src/files/SimpleAdd.asm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Vmtranslator/src/files/SimpleAdd.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Vmtranslator/src/files/StackTest.asm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Vmtranslator/src/files/StackTest.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DSA/labsheet2/src/CircularLinkedList/CircularLinkedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DSA/labsheet2/src/CircularLinkedList/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DSA/labsheet2/src/DoublyLinkedList/DoublyLinkedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DSA/labsheet2/src/DoublyLinkedList/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DSA/labsheet2/src/Functions.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DSA/labsheet2/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DSA/labsheet2/src/SinglyLinkedList/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DSA/labsheet2/src/SinglyLinkedList/SinglyLinkedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DSA/labsheet_3A/src/CircularArrayQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../DSA/labsheet_3A/src/CircularArrayQueue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vmtranslator/src/Converters/Operators.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vmtranslator/src/Converters/Akshaj_21009_Operators.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vmtranslator/src/Converters/Pop.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vmtranslator/src/Converters/Akshaj_21009_Pop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vmtranslator/src/Converters/Push.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vmtranslator/src/Converters/Akshaj_21009_Push.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vmtranslator/src/Handlers/ConvertToVM.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vmtranslator/src/Handlers/Akshaj_21009_ConvertFromVM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vmtranslator/src/Handlers/Remove_Whitespace.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vmtranslator/src/Handlers/Akshaj_21009_Remove_Whitespace.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vmtranslator/src/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vmtranslator/src/Handlers/Akshaj_21009_Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vmtranslator/src/Writer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Vmtranslator/src/Handlers/Akshaj_21009_Writer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vmtranslator/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Vmtranslator/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Vmtranslator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Vmtranslator/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +11,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2BJ6JehvWi6xxzNTAiOV45MAGaw" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -61,9 +27,46 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/akshaj/Works/Academics/EOC/Tokenizer"
+    "last_opened_file_path": "/home/akshaj/Works/Academics/EOC/Tokenizer",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
   }
 }]]></component>
+  <component name="RunManager" selected="Java Scratch.Tokeniser">
+    <configuration name="Tokeniser" type="Java Scratch">
+      <module name="Tokenizer" />
+      <shortenClasspath name="NONE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Unnamed" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list />
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Java Scratch.Tokeniser" />
+      <item itemvalue="Maven.Unnamed" />
+    </list>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -73,10 +76,23 @@
       <option name="presentableId" value="Default" />
       <updated>1656611769612</updated>
       <workItem from="1656611771208" duration="44000" />
+      <workItem from="1657693750967" duration="70000" />
+      <workItem from="1657693830122" duration="108000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

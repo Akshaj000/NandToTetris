@@ -1,0 +1,13 @@
+while (2>5) {
+     while (key = 0) {
+        let key = 3;
+     }
+     if (key = 81)  { let exit = true; }
+     if (key = 131) { let direction = 1; }
+     while (key = 1) {
+       let key = 2;
+       }
+     if (key = 133) { let direction = 2; }
+     if (key = 130) { let direction = 3; }
+     if (key = 132) { let direction = 4; }
+ }

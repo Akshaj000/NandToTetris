@@ -1,0 +1,28 @@
+<ifStatement> <keyword> if <keyword>
+<symbol> ( <symbol>
+<expression> <term> <variableName> <identifier> key <identifier> <variableName> <term>
+<operator> <symbol> = <symbol> <operator>
+<term> <constant> <integerConstant> 81 <integerConstant> <constant> <term> <expression>
+<symbol> ) <symbol>
+<symbol> { <symbol>
+<letStatement> <keyword> let <keyword>
+<variableName> <identifier> exit <identifier> <variableName>
+<operator> <symbol> = <symbol> <operator>
+<expression> <term> <keyword> true <keyword> <term> <expression>
+<symbol> ; <symbol> <letStatement>
+<symbol> } <symbol> <ifStatement>
+<letStatement> <keyword> let <keyword>
+<variableName> <identifier> direction <identifier> <variableName>
+<operator> <symbol> = <symbol> <operator>
+<expression> <term> <constant> <integerConstant> 2 <integerConstant> <constant> <term> <expression>
+<symbol> ; <symbol> <letStatement>
+<letStatement> <keyword> let <keyword>
+<variableName> <identifier> direction <identifier> <variableName>
+<operator> <symbol> = <symbol> <operator>
+<expression> <term> <constant> <integerConstant> 3 <integerConstant> <constant> <term> <expression>
+<symbol> ; <symbol> <letStatement>
+<letStatement> <keyword> let <keyword>
+<variableName> <identifier> direction <identifier> <variableName>
+<operator> <symbol> = <symbol> <operator>
+<expression> <term> <constant> <integerConstant> 4 <integerConstant> <constant> <term> <expression>
+<symbol> ; <symbol> <letStatement>
