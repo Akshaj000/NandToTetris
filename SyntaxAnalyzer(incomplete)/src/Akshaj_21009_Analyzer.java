@@ -229,27 +229,12 @@ public class Akshaj_21009_Analyzer {
                     index2 = getIndexOf(tokens, i, ";")+1;
                 } else {
                     index2 = getIndexOf(tokens,i,")")+1;
-                    if(tokens.get(i).value.equals("if")){
-                        System.out.println(tokens.get(i));
-                        System.out.println(i);
-                    }
                     sublist = new ArrayList<>(tokens.subList(index2, tokens.size()));
-                    index2 = returnParanthesisIndex(sublist) + 7;
-                    if(tokens.get(i).value.equals("if")){
-                        System.out.println(tokens.get(index2));
-                        System.out.println(index2);
-                    }
+                    index2 = returnParanthesisIndex(sublist) + i + 7;
                 }
                 sublist = new ArrayList<>(tokens.subList(i, index2));
-                if(tokens.get(i).value.equals("if")){
-                    System.out.println(i);
-                    System.out.println(index2);
-                    System.out.println("here");
-                    for (int j = 0; j < sublist.size(); j++) {
-                        System.out.println(sublist.get(j));
-                    }
-                }
                 expression += analyzeStatement(sublist, statement_type);
+                i = index2-1;
             }
         }
         return expression;

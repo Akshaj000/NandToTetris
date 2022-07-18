@@ -22,6 +22,8 @@ enum TYPE {
 class Token {
     public String type;
     public String value;
+
+    @Override
     public String toString() {
         return "<"+this.type+"> "+this.value+" <"+this.type+">\n";
     }
@@ -120,6 +122,14 @@ public class Akshaj_21009_Tokenizer {
                     input="&gt;";
                 } else if (input.equals("&")) {
                     input="&amp;";
+                } else if (input.equals(">=")){
+                    input="&ge;";
+                } else if (input.equals("<=")){
+                    input="&le;";
+                } else if (input.equals("==")){
+                    input="&eq;";
+                } else if (input.equals("!=")){
+                    input="&ne;";
                 }
                 return genrateToken(input, TYPE.SYMBOL);
             } else if (checkIntegerConstant(input)) {

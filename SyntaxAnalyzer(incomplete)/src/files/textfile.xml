@@ -1,3 +1,23 @@
+<whileStatement> <keyword> while <keyword>
+<symbol> ( <symbol>
+<expression> <term> <constant> <integerConstant> 2 <integerConstant> <constant> <term>
+<operator> <symbol> &gt; <symbol> <operator>
+<term> <constant> <integerConstant> 5 <integerConstant> <constant> <term> <expression>
+<symbol> ) <symbol>
+<symbol> { <symbol>
+<whileStatement> <keyword> while <keyword>
+<symbol> ( <symbol>
+<expression> <term> <variableName> <identifier> key <identifier> <variableName> <term>
+<operator> <symbol> = <symbol> <operator>
+<term> <constant> <integerConstant> 0 <integerConstant> <constant> <term> <expression>
+<symbol> ) <symbol>
+<symbol> { <symbol>
+<letStatement> <keyword> let <keyword>
+<variableName> <identifier> key <identifier> <variableName>
+<operator> <symbol> = <symbol> <operator>
+<expression> <term> <constant> <integerConstant> 3 <integerConstant> <constant> <term> <expression>
+<symbol> ; <symbol> <letStatement>
+<symbol> } <symbol> <whileStatement>
 <ifStatement> <keyword> if <keyword>
 <symbol> ( <symbol>
 <expression> <term> <variableName> <identifier> key <identifier> <variableName> <term>
@@ -11,18 +31,69 @@
 <expression> <term> <keyword> true <keyword> <term> <expression>
 <symbol> ; <symbol> <letStatement>
 <symbol> } <symbol> <ifStatement>
+<ifStatement> <keyword> if <keyword>
+<symbol> ( <symbol>
+<expression> <term> <variableName> <identifier> key <identifier> <variableName> <term>
+<operator> <symbol> = <symbol> <operator>
+<term> <constant> <integerConstant> 131 <integerConstant> <constant> <term> <expression>
+<symbol> ) <symbol>
+<symbol> { <symbol>
+<letStatement> <keyword> let <keyword>
+<variableName> <identifier> direction <identifier> <variableName>
+<operator> <symbol> = <symbol> <operator>
+<expression> <term> <constant> <integerConstant> 1 <integerConstant> <constant> <term> <expression>
+<symbol> ; <symbol> <letStatement>
+<symbol> } <symbol> <ifStatement>
+<whileStatement> <keyword> while <keyword>
+<symbol> ( <symbol>
+<expression> <term> <variableName> <identifier> key <identifier> <variableName> <term>
+<operator> <symbol> = <symbol> <operator>
+<term> <constant> <integerConstant> 1 <integerConstant> <constant> <term> <expression>
+<symbol> ) <symbol>
+<symbol> { <symbol>
+<letStatement> <keyword> let <keyword>
+<variableName> <identifier> key <identifier> <variableName>
+<operator> <symbol> = <symbol> <operator>
+<expression> <term> <constant> <integerConstant> 2 <integerConstant> <constant> <term> <expression>
+<symbol> ; <symbol> <letStatement>
+<symbol> } <symbol> <whileStatement>
+<ifStatement> <keyword> if <keyword>
+<symbol> ( <symbol>
+<expression> <term> <variableName> <identifier> key <identifier> <variableName> <term>
+<operator> <symbol> = <symbol> <operator>
+<term> <constant> <integerConstant> 133 <integerConstant> <constant> <term> <expression>
+<symbol> ) <symbol>
+<symbol> { <symbol>
 <letStatement> <keyword> let <keyword>
 <variableName> <identifier> direction <identifier> <variableName>
 <operator> <symbol> = <symbol> <operator>
 <expression> <term> <constant> <integerConstant> 2 <integerConstant> <constant> <term> <expression>
 <symbol> ; <symbol> <letStatement>
+<symbol> } <symbol> <ifStatement>
+<ifStatement> <keyword> if <keyword>
+<symbol> ( <symbol>
+<expression> <term> <variableName> <identifier> key <identifier> <variableName> <term>
+<operator> <symbol> = <symbol> <operator>
+<term> <constant> <integerConstant> 130 <integerConstant> <constant> <term> <expression>
+<symbol> ) <symbol>
+<symbol> { <symbol>
 <letStatement> <keyword> let <keyword>
 <variableName> <identifier> direction <identifier> <variableName>
 <operator> <symbol> = <symbol> <operator>
 <expression> <term> <constant> <integerConstant> 3 <integerConstant> <constant> <term> <expression>
 <symbol> ; <symbol> <letStatement>
+<symbol> } <symbol> <ifStatement>
+<ifStatement> <keyword> if <keyword>
+<symbol> ( <symbol>
+<expression> <term> <variableName> <identifier> key <identifier> <variableName> <term>
+<operator> <symbol> = <symbol> <operator>
+<term> <constant> <integerConstant> 132 <integerConstant> <constant> <term> <expression>
+<symbol> ) <symbol>
+<symbol> { <symbol>
 <letStatement> <keyword> let <keyword>
 <variableName> <identifier> direction <identifier> <variableName>
 <operator> <symbol> = <symbol> <operator>
 <expression> <term> <constant> <integerConstant> 4 <integerConstant> <constant> <term> <expression>
 <symbol> ; <symbol> <letStatement>
+<symbol> } <symbol> <ifStatement>
+<symbol> } <symbol> <whileStatement>
