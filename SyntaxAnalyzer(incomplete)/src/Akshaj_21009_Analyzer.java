@@ -15,6 +15,17 @@ public class Akshaj_21009_Analyzer {
         }
         throw new RuntimeException("Invalid Operator");
     }
+
+    private String analyzeSymbol(Token token) throws Exception {
+        String[] symbols = new String[]{"{", "}", "(", ")", "[", "]", ".", ",", ";", "+", "-", "*", "/", "&", "|", "<", ">", "=", "~"};
+        for (String symbol : symbols) {
+            if (symbol.trim().equals(token.value)) {
+                return tokenizer.genrateToken(token.toString(), TYPE.SYMBOL).toString();
+            }
+        }
+        throw new RuntimeException("Invalid Symbol");
+    }
+
     private String analyzeConstant(Token token){
         Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
         if(pattern.matcher(token.value).matches()){
@@ -22,6 +33,17 @@ public class Akshaj_21009_Analyzer {
         }
         throw new RuntimeException("Invalid Constant "+token.value);
     }
+
+    private String analyzeType(Token token){
+        String[] types = new String[]{"int", "char", "boolean", "void"};
+        for (String type : types) {
+            if (type.trim().equals(token.value)) {
+                return tokenizer.genrateToken(token.toString(), TYPE.KEYWORD).toString();
+            }
+        }
+        throw new RuntimeException("Invalid Type");
+    }
+
     private String analyzeVarName(Token token){
         if(tokenizer.checkIdentifier(token.value)){
             return tokenizer.genrateToken(token.toString(), TYPE.VARIABLENAME).toString();
@@ -35,7 +57,7 @@ public class Akshaj_21009_Analyzer {
         } else if (token.type.equals("integerConstant")){
             analyzeConstant(token);
             return tokenizer.genrateToken(analyzeConstant(token), TYPE.TERM).toString();
-        } else if (token.value.equals("true")||token.value.equals("false")){
+        } else if (token.value.equals("true")||token.value.equals("false")||token.value.equals("boolean")||token.value.equals("null")||token.value.equals("this")){
             return tokenizer.genrateToken(token.toString(), TYPE.TERM).toString();
         }
         throw new RuntimeException("Invalid Term "+token.value);
@@ -92,6 +114,37 @@ public class Akshaj_21009_Analyzer {
         }
         return tokenizer.genrateToken(expression, TYPE.LETSTATEMENT).toString();
     }
+
+
+    public String analyzeVarDec(ArrayList<Token> tokens) throws Exception {
+        String expression = "";
+        boolean checkvar = tokens.get(0).value.equals("var");
+        if(checkvar){
+            expression += tokens.get(0).toString();
+        } else {
+            throw new RuntimeException("Invalid Var Declaration, Missing Var");
+        }
+        boolean checktype = analyzeVarName(tokens.get(1)) != null;
+        if(checktype){
+            expression += analyzeVarName(tokens.get(1));
+        } else {
+            throw new RuntimeException("Invalid Var Declaration, Missing Type");
+        }
+        boolean checkvarname = analyzeVarName(tokens.get(2)) != null;
+        if(checkvarname){
+            expression += analyzeVarName(tokens.get(2));
+        } else {
+            throw new RuntimeException("Invalid Var Declaration, Missing Variable Name");
+        }
+        boolean checkclosingtag = tokens.get(tokens.size()-1).value.equals(";");
+        if(checkclosingtag){
+            expression += tokens.get(tokens.size()-1).toString();
+        } else {
+            throw new RuntimeException("Invalid Var Declaration, Missing Closing Tag");
+        }
+        return tokenizer.genrateToken(expression, TYPE.VARIABLEDECLARATION).toString();
+    }
+
     public String analyzeWhileStatement(ArrayList<Token> tokens) throws Exception {
         String expression = "";
         boolean checkwhile = tokens.get(0).value.equals("while");
@@ -144,6 +197,9 @@ public class Akshaj_21009_Analyzer {
     }
 
     public String analyzeIfStatement(ArrayList<Token> tokens) throws Exception {
+        for (int i = 0; i < tokens.size(); i++) {
+            System.out.println(tokens.get(i).value);
+        }
         String expression = "";
         boolean checkif = tokens.get(0).value.equals("if");
         if(checkif){
@@ -178,12 +234,52 @@ public class Akshaj_21009_Analyzer {
             throw new RuntimeException("Invalid If Statement, Missing Opening Bracket");
         }
         index = getIndexOf(tokens,2,"{");
-        sublist = new ArrayList<>(tokens.subList(index+1, tokens.size()-1));
+        int index2 = getIndexOf(tokens,2,"else");
+        if(index2 != -1){
+            sublist = new ArrayList<>(tokens.subList(index+1, index2));
+        } else {
+            sublist = new ArrayList<>(tokens.subList(index+1, tokens.size()-1));
+        }
         boolean checkstatements = analyzeStatements(sublist) != null;
         if(checkstatements){
             expression += analyzeStatements(sublist);
         } else {
             throw new RuntimeException("Invalid If Statement, Missing Statements");
+        }
+        if(index2 != -1){
+            boolean closebracket2 = tokens.get(index2-1).value.equals("}");
+            if(closebracket2){
+                expression += tokens.get(index2-1).toString();
+            } else {
+                throw new RuntimeException("Invalid If Statement, Missing Closing Bracket");
+            }
+            boolean elseif = tokens.get(index2).value.equals("else");
+            if(elseif){
+                expression += tokens.get(index2).toString();
+            } else {
+                throw new RuntimeException("Invalid If Statement, Missing Else");
+            }
+            boolean openbracket3 = tokens.get(index2+1).value.equals("{");
+            if(openbracket3){
+                expression += tokens.get(index2+1).toString();
+            } else {
+                throw new RuntimeException("Invalid If Statement, Missing Opening Bracket");
+            }
+            index = getIndexOf(tokens,index2+1,"{");
+            sublist = new ArrayList<>(tokens.subList(index+1, tokens.size()-1));
+            boolean checkstatements2 = analyzeStatements(sublist) != null;
+            if(checkstatements2){
+                expression += analyzeStatements(sublist);
+            } else {
+                throw new RuntimeException("Invalid If Statement, Missing Statements");
+            }
+            boolean closebracket3 = tokens.get(tokens.size()-1).value.equals("}");
+            if(closebracket3){
+                expression += tokens.get(tokens.size()-1).toString();
+            } else {
+                throw new RuntimeException("Invalid If Statement, Missing Closing Bracket");
+            }
+            return tokenizer.genrateToken(expression, TYPE.IFSTATEMENT).toString();
         }
         boolean closebracket2 = tokens.get(tokens.size()-1).value.equals("}");
         if(closebracket2){
@@ -194,6 +290,22 @@ public class Akshaj_21009_Analyzer {
         return tokenizer.genrateToken(expression, TYPE.IFSTATEMENT).toString();
     }
 
+
+    public String analyzeExpressionList(ArrayList<Token> tokens) throws Exception {
+        String expression = "";
+        for (int i = 0; i < tokens.size(); i++) {
+            ArrayList<Token> sublist = new ArrayList<>(tokens.subList(i, i+1));
+            boolean checkexp = analyzeExpression(sublist) != null;
+            if(checkexp){
+                expression += analyzeExpression(sublist);
+            } else {
+                throw new RuntimeException("Invalid Expression List, Missing Expression");
+            }
+            i+=1;
+        }
+        return tokenizer.genrateToken(expression, TYPE.EXPRESSION_LIST).toString();
+    }
+
     public String analyzeDoStatement(ArrayList<Token> tokens) throws Exception {
         String expression = "";
         boolean checkdo = tokens.get(0).value.equals("do");
@@ -202,29 +314,68 @@ public class Akshaj_21009_Analyzer {
         } else {
             throw new RuntimeException("Invalid Do Statement, Missing Do");
         }
-        boolean openbracket = tokens.get(1).value.equals("(");
-        if(openbracket){
-            expression += tokens.get(1).toString();
+        boolean checkvarname = analyzeVarName(tokens.get(1)) != null;
+        if(checkvarname){
+            expression += analyzeVarName(tokens.get(1));
         } else {
-            throw new RuntimeException("Invalid Do Statement, Missing Opening Bracket");
+            throw new RuntimeException("Invalid Do Statement, Missing Variable Name");
         }
-        int index = getIndexOf(tokens,2,")");
-        ArrayList<Token> sublist = new ArrayList<>(tokens.subList(2, index));
-        boolean checkexp = analyzeExpression(sublist) != null;
-        if(checkexp){
-            expression += analyzeExpression(sublist);
+        boolean firstdeclare = analyzeVarName(tokens.get(1)) != null;
+        if(firstdeclare){
+            expression += analyzeVarName(tokens.get(1));
         } else {
-            throw new RuntimeException("Invalid Do Statement, Missing Expression");
+            throw new RuntimeException("Invalid Do Statement, Missing Variable Name");
         }
-        boolean closebracket = tokens.get(getIndexOf(tokens,2,")")).value.equals(")");
+        int index = 1;
+        if(tokens.get(2).value.equals("(")){
+            boolean openbracket = tokens.get(2).value.equals("(");
+            if(openbracket){
+                expression += tokens.get(2).toString();
+            } else {
+                throw new RuntimeException("Invalid Do Statement, Missing Opening Bracket");
+            }
+            index = 3;
+        } else {
+           boolean checkdot = tokens.get(2).value.equals(".");
+              if(checkdot){
+                expression += tokens.get(2).toString();
+              } else {
+                throw new RuntimeException("Invalid Do Statement, Missing Dot");
+              }
+              boolean checkvarname2 = analyzeVarName(tokens.get(3)) != null;
+            if(checkvarname2){
+                expression += analyzeVarName(tokens.get(3));
+            } else {
+                throw new RuntimeException("Invalid Do Statement, Missing Variable Name");
+            }
+            boolean checkopenbracket = tokens.get(4).value.equals("(");
+            if(checkopenbracket){
+                expression += tokens.get(4).toString();
+            } else {
+                throw new RuntimeException("Invalid Do Statement, Missing Opening Bracket");
+            }
+            index = 5;
+        }
+        if(!tokens.get(index).value.equals(")")){
+            int closetagindex = getIndexOf(tokens,index,")");
+            ArrayList<Token> sublist = new ArrayList<>(tokens.subList(index, closetagindex));
+            index+=sublist.size();
+            boolean checkexpressionlist = analyzeExpressionList(sublist) != null;
+            if(checkexpressionlist){
+                expression += analyzeExpressionList(sublist);
+            }else {
+                throw new RuntimeException("Invalid Do Statement, Missing Expression List");
+            }
+        }
+        boolean closebracket = tokens.get(index).value.equals(")");
         if(closebracket){
-            expression += tokens.get(getIndexOf(tokens,2,")")).toString();
+            expression += tokens.get(index).toString();
         } else {
             throw new RuntimeException("Invalid Do Statement, Missing Closing Bracket");
         }
-        boolean semicolon = tokens.get(tokens.size()-1).value.equals(";");
+        boolean semicolon = tokens.get(index+1).value.equals(";");
         if(semicolon){
-            expression += tokens.get(tokens.size()-1).toString();
+            expression += tokens.get(index+1).toString();
         } else {
             throw new RuntimeException("Invalid Do Statement, Missing Semicolon");
         }
@@ -238,11 +389,7 @@ public class Akshaj_21009_Analyzer {
         } else if(statementtype==TYPE.WHILESTATEMENT) {
             expression = analyzeWhileStatement(tokens);
         } else if(statementtype==TYPE.IFSTATEMENT) {
-            System.out.println("Analyzing If Statement");
-            System.out.println(">");
             expression = analyzeIfStatement(tokens);
-            System.out.println("<");
-            System.out.println("Analyzed If Statement");
         } else if (statementtype==TYPE.DOSTATEMENT) {
             expression = analyzeDoStatement(tokens);
         } else {
@@ -251,52 +398,190 @@ public class Akshaj_21009_Analyzer {
         return expression;
     }
     public String analyzeStatements(ArrayList<Token> tokens) throws Exception {
+        for (int i = 0; i < tokens.size(); i++) {
+            System.out.println(tokens.get(i).toString());
+        }
         String expression = "";
         for (int i = 0; i < tokens.size(); i++) {
-            if(tokens.get(i).value.equals("if")||tokens.get(i).value.equals("while")||tokens.get(i).value.equals("let")){
+            if(tokens.get(i).value.equals("if")||tokens.get(i).value.equals("while")||tokens.get(i).value.equals("let")||tokens.get(i).value.equals("do")||tokens.get(i).value.equals("var")){
                 TYPE statement_type;
-                if(tokens.get(i).value.equals("while")){
-                    statement_type = TYPE.WHILESTATEMENT;
-                } else if(tokens.get(i).value.equals("if")){
-                    statement_type = TYPE.IFSTATEMENT;
-                } else {
-                    statement_type = TYPE.LETSTATEMENT;
+                if(tokens.get(i).value.equals("var")){
+                    ArrayList<Token> sublist = new ArrayList<>(tokens.subList(i, i+4));
+                    expression = analyzeVarDec(sublist);
+                }else {
+                    if (tokens.get(i).value.equals("while")) {
+                        statement_type = TYPE.WHILESTATEMENT;
+                    } else if (tokens.get(i).value.equals("if")) {
+                        statement_type = TYPE.IFSTATEMENT;
+                    } else if (tokens.get(i).value.equals("do")) {
+                        statement_type = TYPE.DOSTATEMENT;
+                    } else {
+                        statement_type = TYPE.LETSTATEMENT;
+                    }
+                    ArrayList<Token> sublist;
+                    int index2;
+                    if (statement_type == TYPE.LETSTATEMENT || statement_type == TYPE.DOSTATEMENT) {
+                        index2 = getIndexOf(tokens, i, ";") + 1;
+                    } else {
+                        index2 = getIndexOf(tokens, i, ")") + 1;
+                        sublist = new ArrayList<>(tokens.subList(index2, tokens.size()));
+                        index2 = returnParanthesisIndex(sublist) + i + 8;
+                    }
+                    sublist = new ArrayList<>(tokens.subList(i, index2));
+                    expression += analyzeStatement(sublist, statement_type);
+                    i = index2-2;
                 }
-                ArrayList<Token> sublist;
-                int index2;
-                if(statement_type == TYPE.LETSTATEMENT){
-                    index2 = getIndexOf(tokens, i, ";")+1;
-                } else {
-                    index2 = getIndexOf(tokens,i,")")+1;
-                    sublist = new ArrayList<>(tokens.subList(index2, tokens.size()));
-                    index2 = returnParanthesisIndex(sublist) + i + 7;
-                }
-                sublist = new ArrayList<>(tokens.subList(i, index2));
-                expression += analyzeStatement(sublist, statement_type);
-                i = index2-1;
             }
         }
         return expression;
     }
 
+
+    public String analyzeSubroutineDec(ArrayList<Token> tokens) throws Exception {
+        String expression = "";
+        if(tokens.get(0).value.equals("constructor")){
+            expression += tokens.get(0).toString();
+            boolean constructorname = analyzeVarName(tokens.get(1)) != null;
+            if(constructorname){
+                expression += analyzeVarName(tokens.get(1));
+            } else {
+                throw new RuntimeException("Invalid Constructor Declaration, Missing Constructor Name");
+            }
+            boolean newkeyword = tokens.get(2).value.equals("new");
+            if(newkeyword){
+                expression += tokens.get(2).toString();
+            } else {
+                throw new RuntimeException("Invalid Constructor Declaration, Missing New Keyword");
+            }
+            boolean openbracket = tokens.get(3).value.equals("(");
+            if(openbracket){
+                expression += tokens.get(3).toString();
+            } else {
+                throw new RuntimeException("Invalid Constructor Declaration, Missing Opening Bracket");
+            }
+            int index = getIndexOf(tokens,4,")");
+            ArrayList<Token> sublist = new ArrayList<>(tokens.subList(4, index));
+            boolean checkparameterlist = analyzeParameterList(sublist) != null;
+            if(checkparameterlist){
+                expression += analyzeParameterList(sublist);
+            } else {
+                throw new RuntimeException("Invalid Constructor Declaration, Missing Parameter List");
+            }
+            boolean closebracket = tokens.get(index).value.equals(")");
+            if(closebracket){
+                expression += tokens.get(index).toString();
+            } else {
+                throw new RuntimeException("Invalid Constructor Declaration, Missing Closing Bracket");
+            }
+            boolean opencurly = tokens.get(index+1).value.equals("{");
+            if(opencurly){
+                expression += tokens.get(index+1).toString();
+            } else {
+                throw new RuntimeException("Invalid Constructor Declaration, Missing Opening Curly Bracket");
+            }
+            int index2 = getIndexOf(tokens,index+2,"}");
+            ArrayList<Token> sublist2 = new ArrayList<>(tokens.subList(index+2, index2));
+            boolean checkstatements = analyzeStatements(sublist2) != null;
+            if(checkstatements){
+                expression += analyzeStatements(sublist2);
+            } else {
+                throw new RuntimeException("Invalid Constructor Declaration, Missing Statements");
+            }
+            boolean closecurly = tokens.get(index2).value.equals("}");
+            if(closecurly){
+                expression += tokens.get(index2).toString();
+            } else {
+                throw new RuntimeException("Invalid Constructor Declaration, Missing Closing Curly Bracket");
+            }
+
+        } else if(tokens.get(0).value.equals("function") || tokens.get(0).value.equals("method")) {
+            expression += tokens.get(0).toString();
+            boolean checkvoid = tokens.get(1).value.equals("void");
+            if (checkvoid) {
+                expression += tokens.get(1).toString();
+            } else {
+                throw new RuntimeException("Invalid Subroutine Declaration, Missing Void");
+            }
+            boolean checkidentifier = analyzeTerm(tokens.get(2)) != null;
+            if (checkidentifier) {
+                expression += analyzeTerm(tokens.get(2));
+            } else {
+                throw new RuntimeException("Invalid Subroutine Declaration, Missing Identifier");
+            }
+            boolean checkopenbracket = tokens.get(3).value.equals("(");
+            if (checkopenbracket) {
+                expression += tokens.get(3).toString();
+            } else {
+                throw new RuntimeException("Invalid Subroutine Declaration, Missing Opening Bracket");
+            }
+            int index = getIndexOf(tokens,4,")");
+            ArrayList<Token> sublist = new ArrayList<>(tokens.subList(4, index));
+            boolean checkparameterlist = analyzeParameterList(sublist) != null;
+            if (checkparameterlist) {
+                expression += analyzeParameterList(sublist);
+            } else {
+                throw new RuntimeException("Invalid Subroutine Declaration, Missing Parameter List");
+            }
+            boolean checkclosebracket = tokens.get(index).value.equals(")");
+            if (checkclosebracket) {
+                expression += tokens.get(index).toString();
+            } else {
+                throw new RuntimeException("Invalid Subroutine Declaration, Missing Closing Bracket");
+            }
+            sublist = new ArrayList<>(tokens.subList(index+1, tokens.size()));
+            boolean checksubroutinebody = analyzeSubroutineBody(sublist) != null;
+            if (checksubroutinebody) {
+                expression += analyzeSubroutineBody(sublist);
+            } else {
+                throw new RuntimeException("Invalid Subroutine Declaration, Missing Subroutine Body");
+            }
+        } else {
+            throw new RuntimeException("Invalid Subroutine Declaration, Missing Subroutine Type");
+        }
+        return tokenizer.genrateToken(expression, TYPE.CLASSVARDEC).toString();
+    }
+
+    public String analyzeParameterList(ArrayList<Token> tokens) throws Exception {
+        String expression = "";
+        for (int i = 0; i < tokens.size(); i++) {
+            if(tokens.get(i).value.equals("int")||tokens.get(i).value.equals("char")||tokens.get(i).value.equals("boolean")){
+                boolean checkidentifier = analyzeTerm(tokens.get(i+1)) != null;
+                if(checkidentifier){
+                    expression += analyzeTerm(tokens.get(i+1));
+                } else {
+                    throw new RuntimeException("Invalid Parameter List, Missing Identifier");
+                }
+                if(i+2<tokens.size()){
+                    boolean checkcomma = tokens.get(i+2).value.equals(",");
+                    if(checkcomma){
+                        expression += tokens.get(i+2).toString();
+                    } else {
+                        throw new RuntimeException("Invalid Parameter List, Missing Comma");
+                    }
+                }
+            }
+            i=i+3;
+        }
+        return tokenizer.genrateToken(expression, TYPE.PARAMETERLIST).toString();
+    }
+
     public String analyzeSubroutineBody(ArrayList<Token> tokens) throws Exception {
         String expression = "";
-        boolean openbracket = tokens.get(0).value.equals("{");
-        if(openbracket){
+        boolean checkopenbracket = tokens.get(0).value.equals("{");
+        if (checkopenbracket){
             expression += tokens.get(0).toString();
         } else {
             throw new RuntimeException("Invalid Subroutine Body, Missing Opening Bracket");
         }
-        int index = getIndexOf(tokens,1,"}");
-        ArrayList<Token> sublist = new ArrayList<>(tokens.subList(1, index));
-        boolean checkstatements = analyzeStatements(sublist) != null;
-        if(checkstatements){
+        ArrayList<Token> sublist = new ArrayList<>(tokens.subList(1, tokens.size()-1));
+        boolean checkstatement = analyzeStatements(sublist) != null;
+        if(checkstatement){
             expression += analyzeStatements(sublist);
         } else {
-            throw new RuntimeException("Invalid Subroutine Body, Missing Statements");
+            throw new RuntimeException("Invalid Subroutine Body, Missing Statement");
         }
-        boolean closebracket = tokens.get(tokens.size()-1).value.equals("}");
-        if(closebracket){
+        boolean checkclosebracket = tokens.get(tokens.size()-1).value.equals("}");
+        if(checkclosebracket){
             expression += tokens.get(tokens.size()-1).toString();
         } else {
             throw new RuntimeException("Invalid Subroutine Body, Missing Closing Bracket");
@@ -304,202 +589,115 @@ public class Akshaj_21009_Analyzer {
         return tokenizer.genrateToken(expression, TYPE.SUBROUTINEBODY).toString();
     }
 
-    public String analyseVariableDeclaration(ArrayList<Token> tokens) throws Exception {
+    public String analyzeClassVarDec(ArrayList<Token> tokens) throws Exception {
         String expression = "";
-        boolean checktype = tokens.get(0).value.equals("int")||tokens.get(0).value.equals("char")||tokens.get(0).value.equals("boolean");
-        if(checktype){
+        boolean checkstatic = tokens.get(0).value.equals("static") || tokens.get(0).value.equals("field");
+        if(checkstatic){
             expression += tokens.get(0).toString();
         } else {
-            throw new RuntimeException("Invalid Variable Declaration, Missing Type");
+            throw new RuntimeException("Invalid Class Variable Declaration, Missing Static or Field");
         }
-        boolean checkidentifier = tokens.get(1).value.matches("[a-zA-Z][a-zA-Z0-9]*");
-        if(checkidentifier){
-            expression += tokens.get(1).toString();
-        } else {
-            throw new RuntimeException("Invalid Variable Declaration, Missing Identifier");
-        }
-        boolean semicolon = tokens.get(2).value.equals(";");
-        if(semicolon){
-            expression += tokens.get(2).toString();
-        } else {
-            throw new RuntimeException("Invalid Variable Declaration, Missing Semicolon");
-        }
-        return tokenizer.genrateToken(expression, TYPE.VARDEC).toString();
-    }
-
-    public String analyzeSubroutineDeclaration(ArrayList<Token> tokens) throws Exception {
-        String expression = "";
-        boolean checkkeyword = tokens.get(0).value.equals("constructor")||tokens.get(0).value.equals("function")||tokens.get(0).value.equals("method");
-        if(checkkeyword){
-            expression += tokens.get(0).toString();
-        } else {
-            throw new RuntimeException("Invalid Subroutine Declaration, Missing Keyword");
-        }
-        boolean checkidentifier = tokens.get(1).value.matches("[a-zA-Z][a-zA-Z0-9]*");
-        if(checkidentifier){
-            expression += tokens.get(1).toString();
-        } else {
-            throw new RuntimeException("Invalid Subroutine Declaration, Missing Identifier");
-        }
-        boolean openbracket = tokens.get(2).value.equals("(");
-        if(openbracket){
-            expression += tokens.get(2).toString();
-        } else {
-            throw new RuntimeException("Invalid Subroutine Declaration, Missing Opening Bracket");
-        }
-        int index = getIndexOf(tokens,3,")");
-        ArrayList<Token> sublist = new ArrayList<>(tokens.subList(3, index));
-        boolean checkparameterlist = analyzeParameterList(sublist) != null;
-        if(checkparameterlist){
-            expression += analyzeParameterList(sublist);
-        } else {
-            throw new RuntimeException("Invalid Subroutine Declaration, Missing Parameter List");
-        }
-        boolean closebracket = tokens.get(index).value.equals(")");
-        if(closebracket){
-            expression += tokens.get(index).toString();
-        } else {
-            throw new RuntimeException("Invalid Subroutine Declaration, Missing Closing Bracket");
-        }
-        boolean openbracket2 = tokens.get(index+1).value.equals("{");
-        if(openbracket2){
-            expression += tokens.get(index+1).toString();
-        } else {
-            throw new RuntimeException("Invalid Subroutine Declaration, Missing Opening Bracket");
-        }
-        int index2 = getIndexOf(tokens,index+2,"}");
-        ArrayList<Token> sublist2 = new ArrayList<>(tokens.subList(index+2, index2));
-        boolean checksubroutinebody = analyzeSubroutineBody(sublist2) != null;
-        if(checksubroutinebody){
-            expression += analyzeSubroutineBody(sublist2);
-        } else {
-            throw new RuntimeException("Invalid Subroutine Declaration, Missing Subroutine Body");
-        }
-        boolean closebracket2 = tokens.get(index2).value.equals("}");
-        if(closebracket2){
-            expression += tokens.get(index2).toString();
-        } else {
-            throw new RuntimeException("Invalid Subroutine Declaration, Missing Closing Bracket");
-        }
-        return tokenizer.genrateToken(expression, TYPE.SUBROUTINEDEC).toString();
-    }
-
-    public String analyzeParameterList(ArrayList<Token> tokens) throws Exception {
-        String expression = "";
-        boolean checktype = tokens.get(0).value.equals("int")||tokens.get(0).value.equals("char")||tokens.get(0).value.equals("boolean");
-        if(checktype){
-            expression += tokens.get(0).toString();
-        } else {
-            throw new RuntimeException("Invalid Parameter List, Missing Type");
-        }
-        boolean checkidentifier = tokens.get(1).value.matches("[a-zA-Z][a-zA-Z0-9]*");
-        if(checkidentifier){
-            expression += tokens.get(1).toString();
-        } else {
-            throw new RuntimeException("Invalid Parameter List, Missing Identifier");
-        }
-        int index = getIndexOf(tokens,2,",");
-        if(index != -1){
-            ArrayList<Token> sublist = new ArrayList<>(tokens.subList(2, index));
-            boolean checkparameterlist = analyzeParameterList(sublist) != null;
-            if(checkparameterlist){
-                expression += analyzeParameterList(sublist);
+        int index = getIndexOf(tokens,1,";");
+        if(index>3) {
+            for (int i = 1; i < index; i++) {
+                boolean checkidentifier = analyzeType(tokens.get(i)) != null;
+                if (checkidentifier) {
+                    expression += analyzeType(tokens.get(i));
+                } else {
+                    throw new RuntimeException("Invalid Class Variable Declaration, Missing Identifier");
+                }
+                boolean varname = analyzeVarName(tokens.get(i+1)) != null;
+                if (varname) {
+                    expression += analyzeTerm(tokens.get(i+1));
+                } else {
+                    throw new RuntimeException("Invalid Class Variable Declaration, Missing Identifier");
+                }
+                if (i + 1 < tokens.size()) {
+                    boolean checkcomma = tokens.get(i + 2).value.equals(",");
+                    if (checkcomma) {
+                        expression += tokens.get(i + 2).toString();
+                    } else {
+                        throw new RuntimeException("Invalid Class Variable Declaration, Missing Comma");
+                    }
+                }
+                i = i + 3;
+            }
+        }else {
+            boolean checkidentifier = analyzeType(tokens.get(1)) != null;
+            if (checkidentifier) {
+                expression += analyzeType(tokens.get(1));
             } else {
-                throw new RuntimeException("Invalid Parameter List, Missing Parameter List");
+                throw new RuntimeException("Invalid Class Variable Declaration, Missing Identifier");
+            }
+            boolean varname = analyzeVarName(tokens.get(2)) != null;
+            if (varname) {
+                expression += analyzeVarName(tokens.get(2));
+            } else {
+                throw new RuntimeException("Invalid Class Variable Declaration, Missing Variable Name");
             }
         }
-        return tokenizer.genrateToken(expression, TYPE.PARAMETERLIST).toString();
+        boolean checksemicolon = tokens.get(index).value.equals(";");
+        if(checksemicolon){
+            expression += tokens.get(index).toString();
+        } else {
+            throw new RuntimeException("Invalid Class Variable Declaration, Missing Semicolon");
+        }
+        return tokenizer.genrateToken(expression, TYPE.CLASSVARDEC).toString();
+
     }
 
     public String analyzeClass(ArrayList<Token> tokens) throws Exception {
         String expression = "";
-        boolean checkkeyword = tokens.get(0).value.equals("class");
-        if(checkkeyword){
+        boolean checkclass = tokens.get(0).value.equals("class");
+        if(checkclass){
             expression += tokens.get(0).toString();
         } else {
-            throw new RuntimeException("Invalid Class, Missing Keyword");
+            throw new RuntimeException("Invalid Class, Missing Class");
         }
-        boolean checkidentifier = tokens.get(1).value.matches("[a-zA-Z][a-zA-Z0-9]*");
+        boolean checkidentifier = analyzeTerm(tokens.get(1)) != null;
         if(checkidentifier){
-            expression += tokens.get(1).toString();
+            expression += analyzeTerm(tokens.get(1));
         } else {
             throw new RuntimeException("Invalid Class, Missing Identifier");
         }
-        boolean openbracket = tokens.get(2).value.equals("{");
-        if(openbracket){
+        boolean checkopenbracket = tokens.get(2).value.equals("{");
+        if(checkopenbracket){
             expression += tokens.get(2).toString();
         } else {
             throw new RuntimeException("Invalid Class, Missing Opening Bracket");
         }
-        int index = getIndexOf(tokens,3,"}");
-        ArrayList<Token> sublist = new ArrayList<>(tokens.subList(3, index));
-        boolean checkclassbody = analyzeClassBody(sublist) != null;
-        if(checkclassbody){
-            expression += analyzeClassBody(sublist);
-        } else {
-            throw new RuntimeException("Invalid Class, Missing Class Body");
+        ArrayList<Token> sublist = new ArrayList<>(tokens.subList(2, tokens.size()));
+        int closetagindex  = returnParanthesisIndex(sublist)+2;
+        for (int i = 3; i < tokens.size(); i++) {
+            if(tokens.get(i).value.equals("static")||tokens.get(i).value.equals("field")){
+                int index = getIndexOf(tokens,i,";");
+                sublist = new ArrayList<>(tokens.subList(i, index+1));
+                boolean checkclassvardec = analyzeClassVarDec(sublist) != null;
+                if(checkclassvardec){
+                    expression += analyzeClassVarDec(sublist);
+                } else {
+                    throw new RuntimeException("Invalid Class, Missing Class Variable Declaration");
+                }
+            } else if(tokens.get(i).value.equals("constructor")||tokens.get(i).value.equals("function")||tokens.get(i).value.equals("method")){
+                int index = getIndexOf(tokens,i,"{");
+                sublist = new ArrayList<>(tokens.subList(index, tokens.size()));
+                int index2 = returnParanthesisIndex(sublist)+index+1;
+                sublist = new ArrayList<>(tokens.subList(i, index2));
+                boolean checksubroutine = analyzeSubroutineDec(sublist) != null;
+                if(checksubroutine){
+                    expression += analyzeSubroutineDec(sublist);
+                } else {
+                    throw new RuntimeException("Invalid Class, Missing Subroutine Declaration");
+                }
+            }
         }
-        boolean closebracket = tokens.get(index).value.equals("}");
-        if(closebracket){
-            expression += tokens.get(index).toString();
+        boolean checkclosebracket = tokens.get(closetagindex).value.equals("}");
+        if(checkclosebracket){
+            expression += tokens.get(closetagindex).toString();
         } else {
             throw new RuntimeException("Invalid Class, Missing Closing Bracket");
         }
         return tokenizer.genrateToken(expression, TYPE.CLASS).toString();
-    }
-
-    public String analyzeClassBody(ArrayList<Token> tokens) throws Exception {
-        String expression = "";
-        int index = getIndexOf(tokens,0,"}");
-        ArrayList<Token> sublist = new ArrayList<>(tokens.subList(0, index));
-        boolean checkclassvar = analyzeClassVarDec(sublist) != null;
-        if(checkclassvar){
-            expression += analyzeClassVarDec(sublist);
-        } else {
-            throw new RuntimeException("Invalid Class Body, Missing Class Variable Declaration");
-        }
-        int index2 = getIndexOf(tokens,index+1,"}");
-        ArrayList<Token> sublist2 = new ArrayList<>(tokens.subList(index+1, index2));
-        boolean checksubroutine = analyzeSubroutineDeclaration(sublist2) != null;
-        if(checksubroutine){
-            expression += analyzeSubroutineDeclaration(sublist2);
-        } else {
-            throw new RuntimeException("Invalid Class Body, Missing Subroutine Declaration");
-        }
-        return tokenizer.genrateToken(expression, TYPE.CLASSBODY).toString();
-    }
-
-    public String analyzeClassVarDec(ArrayList<Token> tokens) throws Exception {
-        String expression = "";
-        boolean checkkeyword = tokens.get(0).value.equals("static")||tokens.get(0).value.equals("field");
-        if(checkkeyword){
-            expression += tokens.get(0).toString();
-        } else {
-            throw new RuntimeException("Invalid Class Variable Declaration, Missing Keyword");
-        }
-        boolean checktype = tokens.get(1).value.equals("int")||tokens.get(1).value.equals("char")||tokens.get(1).value.equals("boolean");
-        if(checktype){
-            expression += tokens.get(1).toString();
-        } else {
-            throw new RuntimeException("Invalid Class Variable Declaration, Missing Type");
-        }
-        boolean checkidentifier = tokens.get(2).value.matches("[a-zA-Z][a-zA-Z0-9]*");
-        if(checkidentifier){
-            expression += tokens.get(2).toString();
-        } else {
-            throw new RuntimeException("Invalid Class Variable Declaration, Missing Identifier");
-        }
-        int index = getIndexOf(tokens,3,",");
-        if(index != -1){
-            ArrayList<Token> sublist = new ArrayList<>(tokens.subList(3, index));
-            boolean checkclassvardec = analyzeClassVarDec(sublist) != null;
-            if(checkclassvardec){
-                expression += analyzeClassVarDec(sublist);
-            } else {
-                throw new RuntimeException("Invalid Class Variable Declaration, Missing Class Variable Declaration");
-            }
-        }
-        return tokenizer.genrateToken(expression, TYPE.CLASSVARDEC).toString();
     }
 
     private int getIndexOf(ArrayList<Token> tokens,int startindex, String value){

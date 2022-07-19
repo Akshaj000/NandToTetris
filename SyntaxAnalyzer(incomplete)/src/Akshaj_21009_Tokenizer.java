@@ -13,6 +13,7 @@ enum TYPE {
     VARIABLENAME,
     TERM,
     EXPRESSION,
+    EXPRESSION_LIST,
     STATEMENT,
     LETSTATEMENT,
     WHILESTATEMENT,
@@ -22,11 +23,13 @@ enum TYPE {
     SUBROUTINEBODY,
     SUBROUTINEDEC,
 
-    VARDEC,
+    VARIABLEDECLARATION,
     PARAMETERLIST,
     CLASS,
     CLASSBODY,
     CLASSVARDEC,
+
+    PARAMETER,
 
 }
 class Token {
@@ -35,7 +38,7 @@ class Token {
 
     @Override
     public String toString() {
-        return "<"+this.type+"> "+this.value+" <"+this.type+">\n";
+        return "<"+this.type+"> "+this.value+" </"+this.type+">\n";
     }
 }
 public class Akshaj_21009_Tokenizer {
@@ -110,6 +113,7 @@ public class Akshaj_21009_Tokenizer {
         Map.put(TYPE.VARIABLENAME,"variableName");
         Map.put(TYPE.TERM,"term");
         Map.put(TYPE.EXPRESSION,"expression");
+        Map.put(TYPE.EXPRESSION_LIST,"expressionList");
         Map.put(TYPE.STATEMENT,"statement");
         Map.put(TYPE.LETSTATEMENT,"letStatement");
         Map.put(TYPE.WHILESTATEMENT,"whileStatement");
@@ -117,7 +121,7 @@ public class Akshaj_21009_Tokenizer {
         Map.put(TYPE.IFSTATEMENT,"ifStatement");
         Map.put(TYPE.SUBROUTINEBODY,"subroutineBody");
         Map.put(TYPE.SUBROUTINEDEC,"subroutineDec");
-        Map.put(TYPE.VARDEC,"varDec");
+        Map.put(TYPE.VARIABLEDECLARATION,"varDec");
         Map.put(TYPE.PARAMETERLIST,"parameterList");
         Map.put(TYPE.CLASS,"class");
         Map.put(TYPE.CLASSBODY,"classBody");

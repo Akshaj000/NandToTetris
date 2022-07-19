@@ -1,9 +1,9 @@
 import java.io.*;
 
 public class Akshaj_21009_Utils {
-    public static void Read(String filename){
-        Akshaj_21009_Tokenizer tokenizer = new Akshaj_21009_Tokenizer();
-        Akshaj_21009_Analyzer analyzer = new Akshaj_21009_Analyzer();
+    static Akshaj_21009_Tokenizer tokenizer = new Akshaj_21009_Tokenizer();
+    static Akshaj_21009_Analyzer analyzer = new Akshaj_21009_Analyzer();
+    public static void ReadAndTokenize(String filename){
         String[] symbol = tokenizer.symbol;
         String sreg ="";
         for (int i=0; i<symbol.length; i++){
@@ -47,7 +47,6 @@ public class Akshaj_21009_Utils {
                 }
             }
             Append(filename+"T","</tokens>");
-            Write(filename,analyzer.analyzeStatements(analyzer.tokens));
         } catch(FileNotFoundException fnfe) {
             System.out.println("The specified file not found" + fnfe);
         } catch(IOException ioe) {
@@ -63,6 +62,20 @@ public class Akshaj_21009_Utils {
             }catch(IOException ioe) {
                 System.out.println("Error in InputStream close(): " + ioe);
             }
+        }
+    }
+
+    public static void Tokenise(String filename){
+        ReadAndTokenize(filename);
+    }
+
+    public static void Analyze(String filename) throws Exception {
+        if(analyzer.tokens.size()>0){
+            filename = filename.substring(0,filename.indexOf("."));
+            Write(filename,analyzer.analyzeClass(analyzer.tokens));
+        } else {
+            ReadAndTokenize(filename);
+            Analyze(filename);
         }
     }
 
